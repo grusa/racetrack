@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">racetrack</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="resume">Resume</string>
+
+    <string name="start_distance">000.00</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="startRoute">Start route</string>
+    <string name="stopRoute">Stop route</string>
+    <string name="savePoint">Save point</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="distance">Distance</string>
+    <string name="time">Time</string>
+    <string name="avSpeed">AV Speed</string>
+    <string name="defaultTime">00:00</string>
+    <string name="defaultDistance">0.0</string>
+    <string name="defaultAV">0.0</string>
+    <string name="activityPoint">Points</string>
+    <string name="date">Date:</string>
+    <string name="desc">Description:</string>
+    <string name="lat">Latitude:</string>
+    <string name="longitude">Longitude:</string>
+    <string name="del">Delete</string>
+    <string name="calories">Calories</string>
+    <string name="chsr">CHSR</string>
+    <string name="title_activity_result">result</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_experimental">Experimental</string>
+</resources>

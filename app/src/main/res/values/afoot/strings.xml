@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">afoot</string>
+    <string name="title_home">000.00</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="startRoute">Start route</string>
+    <string name="stopRoute">Stop route</string>
+    <string name="savePoint">Save point</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="distance">Distance</string>
+    <string name="time">Time</string>
+    <string name="avSpeed">AV Speed</string>
+    <string name="defaultTime">00:00:00</string>
+    <string name="defaultDistance">0.0</string>
+    <string name="defaultAV">0.0</string>
+    <string name="activityPoint">Points</string>
+    <string name="date">Date:</string>
+    <string name="desc">Description:</string>
+    <string name="lat">Latitude:</string>
+    <string name="longitude">Longitude:</string>
+    <string name="del">Delete</string>
+    <string name="calories">Calories</string>
+    <string name="chsr">CHSR</string>
+</resources>
