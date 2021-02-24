@@ -17,6 +17,7 @@ package earth.sochi.racetrack.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 import java.util.UUID
 
 /**
@@ -25,20 +26,20 @@ import java.util.UUID
 @Dao
 interface MyLocationDao {
     @Query("SELECT id, latitude, longitude, foreground, date FROM my_location_table ORDER BY date DESC")
-    fun getLocations(): LiveData<List<MyLocationEntity>>
+    fun getLocations(): Flow<List<MyLocationEntity>>
 //    id, latitude, longitude, foreground, date
 
     @Query("SELECT id, latitude, longitude, foreground, date FROM my_location_table WHERE id=(:id)")
-    fun getLocation(id: Long): LiveData<MyLocationEntity>
+    fun getLocation(id: Long): Flow<MyLocationEntity>
 
     @Update
-    fun updateLocation(myLocationEntity: MyLocationEntity)
+    suspend fun updateLocation(myLocationEntity: MyLocationEntity)
 
     @Insert
-    fun addLocation(myLocationEntity: MyLocationEntity)
+    suspend fun addLocation(myLocationEntity: MyLocationEntity)
 
     @Insert
-    fun addLocations(myLocationEntities: List<MyLocationEntity>)
+    suspend fun addLocations(myLocationEntities: List<MyLocationEntity>)
     @Query("DELETE FROM my_location_table")
-    fun deleteAll()
+    suspend fun deleteAll()
 }

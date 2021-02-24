@@ -25,7 +25,8 @@ class ListWorkoutFragment : Fragment() {
         val binding = DataBindingUtil.
         inflate<FragmentListWorkoutBinding>(inflater,R.layout.fragment_list_workout,container,false)
         binding.testBt.setOnClickListener(){
-            //it.findNavController().navigate(R.id.action_mainActivity_to_timerFragment)
+            //it.findNavController().navigate(R.id.action_rvFragment_to_stopwatchFragment)
+
         }
         // Inflate the layout for this fragment
         return binding.root

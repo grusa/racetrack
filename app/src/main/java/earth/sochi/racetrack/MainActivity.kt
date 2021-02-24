@@ -8,16 +8,20 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
-import earth.sochi.racetrack.workout.TikTakAdapter
+import earth.sochi.racetrack.viewmodels.WorkoutTypeViewModel
+import earth.sochi.racetrack.workout.WorkoutTypeListAdapter
 import earth.sochi.racetrack.workout.WorkoutFragment
 
 
 class MainActivity : AppCompatActivity() {
     val TAG="MA"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         try {

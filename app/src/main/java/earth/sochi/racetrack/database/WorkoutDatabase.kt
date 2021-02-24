@@ -3,48 +3,67 @@ package earth.sochi.racetrack.database
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import androidx.sqlite.db.SupportSQLiteDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 private const val DATABASE_NAME = "workout-database"
 
 @Database(entities = [Workout::class,WorkoutType::class,MyLocationEntity::class], version = 1)
 abstract class WorkoutDatabase: RoomDatabase() {
-    abstract val workoutDao: WorkoutDao
-    abstract val workoutTypeDao: WorkoutTypeDao
-    abstract val myLocationDao: MyLocationDao
-
-//    abstract fun locationDao(): MyLocationDao
-
-/*    private lateinit var INSTANCE: WorkoutDatabase
-
-    fun getDatabase(context: Context): WorkoutDatabase {
-        synchronized(WorkoutDatabase::class.java) {
-            if (!::INSTANCE.isInitialized) {
-                INSTANCE = Room.databaseBuilder(
-                    context.applicationContext,
-                    WorkoutDatabase::class.java,
-                    "workouts_database"
-                ).build()
+    abstract fun workoutDao(): WorkoutDao
+    abstract fun workoutTypeDao(): WorkoutTypeDao
+    abstract fun myLocationDao(): MyLocationDao
+    private class WorkoutDatabaseCallback(
+            private val scope: CoroutineScope
+        ) : RoomDatabase.Callback() {
+        override fun onCreate(db: SupportSQLiteDatabase) {
+            super.onCreate(db)
+            INSTANCE?.let { database ->
+                scope.launch {
+                    //Create database
+                    val workoutTypeDao = database.workoutTypeDao()
+                    workoutTypeDao.deleteAll()
+                    var wt = WorkoutType (0,"StopWatch")
+                    workoutTypeDao.insert(wt)
+                    wt =WorkoutType (1,"Timer")
+                    workoutTypeDao.insert(wt)
+                    wt =WorkoutType (2,"Metronome")
+                    workoutTypeDao.insert(wt)
+                    wt =WorkoutType (3,"Breathing")
+                    workoutTypeDao.insert(wt)
+                    wt =WorkoutType (4,"Pranayama")
+                    workoutTypeDao.insert(wt)
+                    wt =WorkoutType (5,"Running")
+                    workoutTypeDao.insert(wt)
+                    wt =WorkoutType (6,"Walking")
+                    workoutTypeDao.insert(wt)
+                    wt =WorkoutType (7,"HIIT")
+                    workoutTypeDao.insert(wt)
+                }
             }
         }
-        return INSTANCE
-    }*/
 
+    }
     companion object {
         // For Singleton instantiation
-        @Volatile private var INSTANCE: WorkoutDatabase? = null
-
-        fun getInstance(context: Context): WorkoutDatabase {
+        @Volatile
+        private var INSTANCE: WorkoutDatabase? = null
+        fun getDatabase(context: Context, scope: CoroutineScope): WorkoutDatabase {
+            // if the INSTANCE is not null, then return it,
+            // if it is, then create the database
             return INSTANCE ?: synchronized(this) {
-                INSTANCE ?: buildDatabase(context).also { INSTANCE = it }
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    WorkoutDatabase::class.java,
+                    "workout_database"
+                )
+                    .addCallback(WorkoutDatabaseCallback(scope))
+                    .build()
+                INSTANCE = instance
+                // return instance
+                instance
             }
-        }
-
-        private fun buildDatabase(context: Context): WorkoutDatabase {
-            return Room.databaseBuilder(
-                context,
-                WorkoutDatabase::class.java,
-                DATABASE_NAME
-            ).build()
         }
     }
 }

@@ -1,22 +1,28 @@
 package earth.sochi.racetrack.viewmodels
 
 import androidx.lifecycle.*
-import earth.sochi.racetrack.database.WorkoutType
-import earth.sochi.racetrack.database.WorkoutTypeDao
+import earth.sochi.racetrack.database.*
 import kotlinx.coroutines.launch
 
-class WorkoutsTypeViewModel (dataSource: WorkoutTypeDao)
+class WorkoutTypeViewModel (private val repository : WorkoutTypeRepository)
         : ViewModel() {
-        private val workoutType : LiveData<List<WorkoutType>>
-        private val _workoutTypes= MutableLiveData<WorkoutType>()
-
-        val workoutTypes:LiveData<WorkoutType?>
+        private val _workoutTypes : LiveData<List<WorkoutType>> =
+            repository.allWorkoutTypes.asLiveData()
+        val workoutTypes :LiveData<List<WorkoutType>>
         get() = _workoutTypes
 
-    fun onClose() {
-        _workoutTypes.value = null
+    fun insertWorkoutType(workoutType: WorkoutType) {
+        viewModelScope.launch { repository.insert(workoutType) }
     }
-    fun run() {
-        viewModelScope.launch {  }
+
+    class WorkoutTypeViewModelFactory(private val repository: WorkoutTypeRepository) :
+        ViewModelProvider.Factory {
+        override fun <T : ViewModel> create(modelClass: Class<T>): T {
+            if (modelClass.isAssignableFrom(WorkoutTypeViewModel::class.java)) {
+                @Suppress("UNCHECKED_CAST")
+                return WorkoutTypeViewModel(repository) as T
+            }
+            throw IllegalArgumentException("Unknown ViewModel class")
+        }
     }
 }

@@ -10,11 +10,7 @@ import androidx.navigation.fragment.findNavController
 import earth.sochi.racetrack.R
 import earth.sochi.racetrack.databinding.FragmentListWorkoutBinding
 import earth.sochi.racetrack.databinding.FragmentStopwatchBinding
-import kotlinx.android.synthetic.main.fragment_stopwatch.view.*
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
 class StopwatchFragment : Fragment() {
 private  lateinit var binding:FragmentStopwatchBinding
 
