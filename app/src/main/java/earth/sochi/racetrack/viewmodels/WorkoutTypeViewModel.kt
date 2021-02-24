@@ -7,17 +7,8 @@ import kotlinx.coroutines.launch
 
 class WorkoutsTypeViewModel (dataSource: WorkoutTypeDao)
         : ViewModel() {
-        private val workoutType : LiveData<WorkoutType>
+        private val workoutType : LiveData<List<WorkoutType>>
         private val _workoutTypes= MutableLiveData<WorkoutType>()
-        init {
-            if (dataSource.getWorkoutTypes()!=null) {
-                suspend {
-                    dataSource.insertWorkoutType(
-                        WorkoutType(1, "No Types"))
-                }
-            }
-            workoutType = dataSource.getWorkoutTypes()
-        }
 
         val workoutTypes:LiveData<WorkoutType?>
         get() = _workoutTypes
