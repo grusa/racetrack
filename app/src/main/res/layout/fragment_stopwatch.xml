@@ -7,6 +7,16 @@
     tools:context=".workout.StopwatchFragment"
     android:background="@color/colorPrimaryLightSuper">
 
+    <ImageView
+        android:id="@+id/arrow_image"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/arrow"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/stopwatch_tv"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Chronometer
         android:id="@+id/stopwatch_tv"
@@ -20,7 +30,7 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintBottom_toTopOf="@id/button_start"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/arrow_image"/>
 
     <Button
         android:id="@+id/button_start"

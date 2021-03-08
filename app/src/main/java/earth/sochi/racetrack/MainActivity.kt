@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
+import earth.sochi.racetrack.viewmodels.TimeManagerViewModel
 import earth.sochi.racetrack.viewmodels.WorkoutTypeViewModel
 import earth.sochi.racetrack.workout.WorkoutTypeListAdapter
 import earth.sochi.racetrack.workout.WorkoutFragment
