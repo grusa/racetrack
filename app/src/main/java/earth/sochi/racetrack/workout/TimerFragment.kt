@@ -14,6 +14,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.*
 import earth.sochi.racetrack.*
@@ -33,9 +34,9 @@ private lateinit var binding :FragmentTimerBinding
     val currentTime: LiveData<Long>
         get() = _currentTime
     private lateinit var timer: CountDownTimer
-//TODO MOVE ViewModel to APPLICATION
-    val timeManagerViewModel :TimeManagerViewModel by viewModels {
-        TimeManagerViewModel.TimeManagerViewModelFactory((this.activity?.application as RacetrackApplication).workoutTypeRepository)
+
+    private val timeManagerViewModel: TimeManagerViewModel by activityViewModels() {
+    TimeManagerViewModel.TimeManagerViewModelFactory((this.activity?.application as RacetrackApplication).workoutTypeRepository)
     }
     private val workoutTypeViewModel: WorkoutTypeViewModel by viewModels ()
     {

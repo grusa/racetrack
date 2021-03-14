@@ -9,12 +9,15 @@ import android.os.IBinder
 import android.util.Log
 import earth.sochi.racetrack.R
 
-class MetronomService : Service(), Runnable {
+class BreathService : Service(), Runnable {
     var handler: Handler? = null
     val TAG = "MS"
     var soundPool: SoundPool? = null
     var soundId = 0
-    var timer = 0
+    var inhale = 0
+    var firstPause = 0
+    var exhale = 0
+    var secondPause = 0
     var count = 0
     override fun onCreate() {
         super.onCreate()
@@ -32,7 +35,6 @@ class MetronomService : Service(), Runnable {
         soundId = soundPool!!.load(this, R.raw.beep, 5)
         handler = Handler()
         handler!!.post(this)
-        Log.d(TAG,"onCreate $timer")
     }
 
     override fun onDestroy() {
@@ -42,16 +44,17 @@ class MetronomService : Service(), Runnable {
 
     //@Nullable
     override fun onBind(intent: Intent): IBinder? {
-        timer = intent.getIntExtra("timer", 0)
-        Log.d(TAG,"onBind:$timer")
+        inhale = intent.getIntExtra("inhale", 0)
+        firstPause = intent.getIntExtra("firstPause", 0)
+        exhale = intent.getIntExtra("exhale", 0)
+        secondPause = intent.getIntExtra("secondPause", 0)
         return null
     }
 
     override fun run() {
-        Log.d(TAG,"run():$timer and $count")
-        if (timer > 0) {
+        if (inhale>0 && exhale>0 ) {
             soundPool!!.play(soundId, 1f, 1f, 5, 0, 1.toFloat())
-            handler!!.postDelayed(this, timer.toLong())
+            handler!!.postDelayed(this, inhale.toLong())
             count++
         }
     }

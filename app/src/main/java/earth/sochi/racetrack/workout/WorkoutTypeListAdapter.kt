@@ -32,13 +32,14 @@ class WorkoutTypeListAdapter : ListAdapter<WorkoutType,
          })
     }
     private fun runIntent(position: Int,view: View) {
-        if (position==0) {
-            Navigation.findNavController(view).navigate(R.id.action_rvFragment_to_stopwatchFragment)
-        } else if (position==1) {
-            view.findNavController().navigate(R.id.action_rvFragment_to_timerFragment)
-
-        }
-    }
+        when (position) {
+            0 -> view.findNavController().navigate(R.id.action_rvFragment_to_stopwatchFragment)
+            1 -> view.findNavController().navigate(R.id.action_rvFragment_to_timerFragment)
+            2 -> view.findNavController().navigate(R.id.action_rvFragment_to_metronomeFragment)
+            3 -> view.findNavController().navigate(R.id.action_rvFragment_to_breathFragment)
+            4 -> view.findNavController().navigate(R.id.action_rvFragment_to_runFragment)
+            5 -> view.findNavController().navigate(R.id.action_rvFragment_to_hiitFragment)
+        }}
     class WorkoutTypeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val workoutTypeItemView: TextView = itemView.findViewById(R.id.tiktak_textView)
 
@@ -64,35 +65,3 @@ class WorkoutTypeListAdapter : ListAdapter<WorkoutType,
         }
     }
 }
-// OLD CODE
-//class TikTakAdapter
-//    (private val dataSet: MutableMap<Int,String>) :
-//        RecyclerView.Adapter<TikTakAdapter.ViewHolder>() {
-//
-//
-//        class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-//            val textView: TextView = view.findViewById(R.id.tiktak_textView)
-//        }
-//        // Create new views (invoked by the layout manager)
-//        override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
-//            // Create a new view, which defines the UI of the list item
-//            val view = LayoutInflater.from(viewGroup.context)
-//                .inflate(R.layout.row_experimental, viewGroup, false)
-//            return ViewHolder(view)
-//        }
-//        override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-//            viewHolder.textView.text = dataSet[position]
-//            viewHolder.textView.setOnClickListener(View.OnClickListener {
-//                runIntent(position,it)
-//            })
-//        }
-//        override fun getItemCount() = dataSet.size
-//        private fun runIntent(position: Int,view: View) {
-//            if (position==0) {
-//                Navigation.findNavController(view).navigate(R.id.action_rvFragment_to_stopwatchFragment)
-//            } else if (position==1) {
-//                view.findNavController().navigate(R.id.action_rvFragment_to_timerFragment)
-//
-//            }
-//        }
-//    }

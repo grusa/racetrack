@@ -12,9 +12,7 @@ import androidx.core.app.AlarmManagerCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.*
 import earth.sochi.racetrack.database.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 
 class TimeManagerViewModel (private val repository: WorkoutTypeRepository) : ViewModel() {
 
@@ -27,6 +25,9 @@ class TimeManagerViewModel (private val repository: WorkoutTypeRepository) : Vie
     private var _elapsedTime = MutableLiveData<Long>()
     val elapsedTime: LiveData<Long>
         get() = _elapsedTime
+    private var _metronomTime = MutableLiveData<Boolean>()
+    val metronomTime: LiveData<Boolean>
+        get() = _metronomTime
     var startAlarm = MutableLiveData<Boolean>()
     private var timer: CountDownTimer?=null
     private var triggerTime=0L
@@ -49,7 +50,7 @@ class TimeManagerViewModel (private val repository: WorkoutTypeRepository) : Vie
         startAlarm.value = false
         createTimer()
     }
-     private fun createTimer() {
+    private fun createTimer() {
         viewModelScope.launch {
             timer = object : CountDownTimer(triggerTime, second) {
                 override fun onTick(millisUntilFinished: Long) {
@@ -63,6 +64,14 @@ class TimeManagerViewModel (private val repository: WorkoutTypeRepository) : Vie
                     stopTimer()
                 }
             }.start()
+        }
+    }
+    private fun createMetronom(beats:Int) {
+        viewModelScope.launch {
+            while (true) {
+                _metronomTime.value = true
+                delay((beats/60).toLong())
+            }
         }
     }
     class TimeManagerViewModelFactory(private val repository: WorkoutTypeRepository) :

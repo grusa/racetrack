@@ -5,9 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import earth.sochi.racetrack.database.WorkoutType
 import earth.sochi.racetrack.workout.WorkoutTypeListAdapter
@@ -18,7 +21,7 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 class RvFragment : Fragment() {
-    private val workoutTypeViewModel: WorkoutTypeViewModel by viewModels ()
+    private val workoutTypeViewModel: WorkoutTypeViewModel by activityViewModels ()
     {
         WorkoutTypeViewModel.WorkoutTypeViewModelFactory(
             (this.activity?.application as RacetrackApplication).workoutTypeRepository)
@@ -39,12 +42,12 @@ class RvFragment : Fragment() {
             // Update the cached copy of the words in the adapter.
             workoutTypes.let { tikTakAdapter.submitList(it) }
         }
-//        val itemDecorator =
-//            DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL)
-//        itemDecorator.setDrawable(
-//            ContextCompat.getDrawable(recyclerView.context,
-//                R.drawable.twcolor)!!)
-//        recyclerView.addItemDecoration(itemDecorator)
+        val itemDecorator =
+            DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL)
+        itemDecorator.setDrawable(
+            ContextCompat.getDrawable(recyclerView.context,
+                R.drawable.twcolor)!!)
+        recyclerView.addItemDecoration(itemDecorator)
         return view //inflater.inflate(R.layout.fragment_rv, container, false)
     }
     override fun onDestroyView() {

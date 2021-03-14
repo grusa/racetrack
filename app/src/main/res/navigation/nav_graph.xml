@@ -25,5 +25,35 @@
         <action
             android:id="@+id/action_rvFragment_to_timerFragment"
             app:destination="@id/timerFragment" />
+        <action
+            android:id="@+id/action_rvFragment_to_metronomeFragment"
+            app:destination="@id/metronomeFragment" />
+        <action
+            android:id="@+id/action_rvFragment_to_breathFragment"
+            app:destination="@id/breathFragment" />
+        <action
+            android:id="@+id/action_rvFragment_to_runFragment"
+            app:destination="@id/runFragment" />
+        <action
+            android:id="@+id/action_rvFragment_to_hiitFragment"
+            app:destination="@id/hiitFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/metronomeFragment"
+        android:name="earth.sochi.racetrack.workout.MetronomeFragment"
+        android:label="MetronomeFragment" />
+    <fragment
+        android:id="@+id/breathFragment"
+        android:name="earth.sochi.racetrack.workout.BreathFragment"
+        android:label="BreathFragment" />
+    <fragment
+        android:id="@+id/runFragment"
+        android:name="earth.sochi.racetrack.workout.RunFragment"
+        android:label="fragment_run"
+        tools:layout="@layout/fragment_run" />
+    <fragment
+        android:id="@+id/hiitFragment"
+        android:name="earth.sochi.racetrack.workout.HiitFragment"
+        android:label="fragment_hiit"
+        tools:layout="@layout/fragment_hiit" />
 </navigation>

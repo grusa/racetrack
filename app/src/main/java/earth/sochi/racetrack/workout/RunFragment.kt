@@ -38,6 +38,7 @@ class RunFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_run, container, false)
     }
 
+
     companion object {
         /**
          * Use this factory method to create a new instance of
