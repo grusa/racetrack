@@ -14,7 +14,7 @@ import androidx.lifecycle.*
 import earth.sochi.racetrack.database.*
 import kotlinx.coroutines.*
 
-class BreathManagerViewModel (private val repository: WorkoutTypeRepository) : ViewModel() {
+class BreathViewModel (private val repository: WorkoutTypeRepository) : ViewModel() {
 
     private val REQUEST_CODE = 0
     private val TRIGGER_TIME = "TRIGGER_AT"
@@ -74,12 +74,12 @@ class BreathManagerViewModel (private val repository: WorkoutTypeRepository) : V
             }
         }
     }
-    class TimeManagerViewModelFactory(private val repository: WorkoutTypeRepository) :
+    class BreathViewModelFactory(private val repository: WorkoutTypeRepository) :
         ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            if (modelClass.isAssignableFrom(BreathManagerViewModel::class.java)) {
+            if (modelClass.isAssignableFrom(BreathViewModel::class.java)) {
                 @Suppress("UNCHECKED_CAST")
-                return BreathManagerViewModel(repository) as T
+                return BreathViewModel(repository) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
         }

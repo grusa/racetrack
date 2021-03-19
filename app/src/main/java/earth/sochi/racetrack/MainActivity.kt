@@ -22,6 +22,7 @@ import earth.sochi.racetrack.workout.WorkoutFragment
 
 class MainActivity : AppCompatActivity() {
     val TAG="MA"
+    public var serviceBound:Boolean=true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

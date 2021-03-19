@@ -1,15 +1,18 @@
 package earth.sochi.racetrack.workout
 
+import android.app.ActivityManager
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import android.content.res.Resources.getSystem
 import android.os.Bundle
 import android.os.IBinder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import earth.sochi.racetrack.R
@@ -42,6 +45,9 @@ class MetronomeFragment : Fragment() {
         binding.upSecondBt.setOnClickListener(clickListener)
         binding.downSecondBt.setOnClickListener(clickListener)
         binding.buttonStart.setOnClickListener {startClick()}
+        if (!startStop) {
+            binding.buttonStart.text = getText(R.string.stop)
+        }
 
     }
     val clickListener = View.OnClickListener {view ->
@@ -75,6 +81,7 @@ class MetronomeFragment : Fragment() {
         } else {
             binding.buttonStart.text = getText(R.string.start)
             startStop = true
+
             requireActivity().unbindService(serviceConnection)
         }
     }

@@ -4,6 +4,8 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 
@@ -62,3 +64,4 @@ fun toMinutes(timeInterval:Long):Long {
 fun toSeconds (minutes:Long,seconds:Long):Long {
     return minutes*60 + seconds
 }
+
