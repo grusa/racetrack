@@ -110,9 +110,7 @@ class WorkoutFragment : Fragment() {
         distance =0.0
         time = 0.0
         startTime=0L
-        binding.distanceTv.text = "0.0"
-        binding.paceTv.text="0.0"
-        binding.speedTv.text="0.0"
+
         chronometr.base = SystemClock.elapsedRealtime()
 
 
@@ -125,7 +123,7 @@ class WorkoutFragment : Fragment() {
             binding.startBt.setBackgroundColor(
                 ContextCompat.getColor(requireContext(), R.color.colorAccent)
             )
-            binding.paceTv.text = "Started"
+
             ss=StartStop.STOP
             chronometr.start()
         } else {
@@ -134,7 +132,7 @@ class WorkoutFragment : Fragment() {
                 ContextCompat.getColor(requireContext(), R.color.colorPrimary)
             )
             ss=StartStop.START
-            binding.paceTv.text = "Stopped"
+
             binding.startBt.text=StartStop.START.toString()
             chronometr.stop()
 

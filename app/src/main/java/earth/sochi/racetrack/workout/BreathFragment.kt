@@ -20,8 +20,7 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 private const val ARG_PARAM3 = "param3"
 private const val ARG_PARAM4 = "param4"
-private lateinit var binding : FragmentBreathBinding
-private var startStop:Boolean = true
+
 
 class BreathFragment : Fragment() {
     // TODO: Rename and change types of parameters
@@ -29,6 +28,8 @@ class BreathFragment : Fragment() {
     private var firstPause: Int = 1
     private var exhale: Int = 4
     private var secondPause: Int = 1
+    private lateinit var binding : FragmentBreathBinding
+    private var startStop:Boolean = true
 
     private val breathViewModel: BreathViewModel by activityViewModels() {
         BreathViewModel.BreathViewModelFactory((this.activity?.application as RacetrackApplication).workoutTypeRepository)
@@ -53,7 +54,7 @@ class BreathFragment : Fragment() {
         binding.firstPauseTv.setText(firstPause.toString())
         binding.exhaleTv.setText(exhale.toString())
         binding.secondPauseTv.setText(secondPause.toString())
-
+        binding.progressIndicatorSecondPause.setMax(100)
         binding.buttonStart.setOnClickListener{
             onStartClick()
         }
@@ -64,54 +65,56 @@ class BreathFragment : Fragment() {
     }
     private fun onStartClick() {
         if (startStop) {
-            binding.buttonStart.text = getText(R.string.stop)
-
-            getValueBreathe()
-            breathViewModel.startTimer(getTimerPeriod())
+            if (getValueBreathe()) {
+                binding.buttonStart.text =getText(R.string.stop)
+                binding.progressIndicatorSecondPause.setMax(getTimerPeriod().toInt())
+                breathViewModel.startTimer(getTimerPeriod())
+            }
         } else {
             binding.buttonStart.text = getText(R.string.start)
-            binding.inhaleTr.setBackgroundResource(R.color.white)
-            binding.exhaleTr.setBackgroundResource(R.color.white)
-            binding.firstPauseTr.setBackgroundResource(R.color.white)
-            binding.secondPauseTr.setBackgroundResource(R.color.white)
-            binding.seekBar.progress=0
-            breathViewModel.resetTimer()
+            binding.inhaleTr.setBackgroundResource(R.color.colorPrimaryLightSuper)
+            binding.exhaleTr.setBackgroundResource(R.color.colorPrimaryLightSuper)
+            binding.firstPauseTr.setBackgroundResource(R.color.colorPrimaryLightSuper)
+            binding.secondPauseTr.setBackgroundResource(R.color.colorPrimaryLightSuper)
+            breathViewModel.stopTimer()
         }
         startStop = !startStop
     }
     fun running(deal:Long) {
         when (deal) {
-            (inhale+exhale+firstPause+secondPause).toLong() -> binding.inhaleTr.setBackgroundResource(R.color.colorAccent)
-
-            (exhale+firstPause+secondPause).toLong() -> {binding.inhaleTr.setBackgroundResource(R.color.white)
-                    binding.firstPauseTr.setBackgroundResource(R.color.colorAccent)
-            binding.seekBar.progress=1}
-
-            (exhale+secondPause).toLong() -> {binding.firstPauseTr.setBackgroundResource(R.color.white)
-                    binding.exhaleTr.setBackgroundResource(R.color.colorAccent)
-                binding.seekBar.progress=2}
-
-            (secondPause).toLong() -> {binding.exhaleTr.setBackgroundResource(R.color.white)
-                    binding.secondPauseTr.setBackgroundResource(R.color.colorAccent)
-                binding.seekBar.progress=3}
-
-            0L -> {binding.secondPauseTr.setBackgroundResource(R.color.white)
-                    breathViewModel.startTimer(getTimerPeriod())
-                binding.seekBar.progress=0}
+            (inhale+exhale+firstPause+secondPause).toLong() ->{
+                                binding.inhaleTr.setBackgroundResource(R.color.colorAccent)}
+            (exhale+firstPause+secondPause).toLong() -> {
+                                binding.inhaleTr.setBackgroundResource(R.color.colorPrimaryLightSuper)
+                                binding.firstPauseTr.setBackgroundResource(R.color.colorAccent)}
+            (exhale+secondPause).toLong() -> {
+                                binding.firstPauseTr.setBackgroundResource(R.color.colorPrimaryLightSuper)
+                                binding.exhaleTr.setBackgroundResource(R.color.colorAccent)}
+            (secondPause).toLong() -> {
+                                binding.exhaleTr.setBackgroundResource(R.color.colorPrimaryLightSuper)
+                                binding.secondPauseTr.setBackgroundResource(R.color.colorAccent)}
+            0L -> {
+                                binding.secondPauseTr.setBackgroundResource(R.color.colorPrimaryLightSuper)
+                                breathViewModel.startTimer(getTimerPeriod())}
         }
+        binding.progressIndicatorSecondPause.setProgress(
+            binding.progressIndicatorSecondPause.getMax()-deal.toInt())
+
     }
-    fun getValueBreathe() {
+    fun getValueBreathe():Boolean {
         try {
             inhale = binding.inhaleTv.text.toString().toInt()
         } catch (e :Exception) {
             Toast.makeText(this.requireContext(),getString(R.string.errorMessage)+
                 R.string.inhale,Toast.LENGTH_LONG).show()
+            return false
         }
         try {
             exhale = binding.exhaleTv.text.toString().toInt()
         } catch (e :Exception) {
             Toast.makeText(this.requireContext(),getString(R.string.errorMessage)+
                     R.string.exhale,Toast.LENGTH_LONG).show()
+            return false
         }
         try {
             firstPause = binding.firstPauseTv.text.toString().toInt()
@@ -119,7 +122,9 @@ class BreathFragment : Fragment() {
         } catch (e :Exception) {
             Toast.makeText(this.requireContext(),getString(R.string.errorMessage)+
                     R.string.pause,Toast.LENGTH_LONG).show()
+            return false
         }
+        return true
     }
     private fun getTimerPeriod():Long {
         return (inhale+exhale+firstPause+secondPause).toLong()+1

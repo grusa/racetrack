@@ -9,11 +9,15 @@ import kotlinx.coroutines.launch
 
 private const val DATABASE_NAME = "workout-database"
 
-@Database(entities = [Workout::class,WorkoutType::class,MyLocationEntity::class], version = 1)
+@Database(entities = [Workout::class,WorkoutType::class,MyLocationEntity::class,Weight::class,
+    Hiit::class,Exercise::class], version = 1)
 abstract class WorkoutDatabase: RoomDatabase() {
     abstract fun workoutDao(): WorkoutDao
     abstract fun workoutTypeDao(): WorkoutTypeDao
     abstract fun myLocationDao(): MyLocationDao
+    abstract fun weightDao(): WeightDao
+    abstract fun hiitDao(): HiitDao
+    abstract fun exerciseDao() : ExerciseDao
     private class WorkoutDatabaseCallback(
             private val scope: CoroutineScope
         ) : RoomDatabase.Callback() {
@@ -21,7 +25,16 @@ abstract class WorkoutDatabase: RoomDatabase() {
             super.onCreate(db)
             INSTANCE?.let { database ->
                 scope.launch {
-                    //Create database
+
+                    //Create data for testing database
+                    val hiitDao = database.hiitDao()
+                    var hiit = Hiit(0,"Hiit1",50,"Desc","SS","SS")
+                    hiitDao.insert(hiit)
+                    val weightDao = database.weightDao()
+                    var weight = Weight(0,97,500,0)
+                    weightDao.insert(weight)
+                    //Create data for testing database
+
                     val workoutTypeDao = database.workoutTypeDao()
                     workoutTypeDao.deleteAll()
                     var wt = WorkoutType (0,"StopWatch")
@@ -42,7 +55,8 @@ abstract class WorkoutDatabase: RoomDatabase() {
 //                    workoutTypeDao.insert(wt)
                     wt =WorkoutType (8,"HIIT")
                     workoutTypeDao.insert(wt)
-
+                    wt =WorkoutType (9,"Weight")
+                    workoutTypeDao.insert(wt)
                 }
             }
         }

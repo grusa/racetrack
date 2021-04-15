@@ -4,22 +4,31 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
+import android.location.Location
 import android.os.Bundle
 import android.os.Handler
 import android.os.IBinder
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TableLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat.getColor
 import androidx.core.content.ContextCompat.getDrawable
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import earth.sochi.racetrack.R
+import earth.sochi.racetrack.RacetrackApplication
 import earth.sochi.racetrack.databinding.FragmentRunBinding
+import earth.sochi.racetrack.toMinutes
+import earth.sochi.racetrack.toSeconds
 import earth.sochi.racetrack.utils.RunningService
+import earth.sochi.racetrack.viewmodels.RunningViewModel
+import earth.sochi.racetrack.viewmodels.TimeManagerViewModel
 import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -39,14 +48,8 @@ class RunFragment : Fragment() {
 
     private var speedometer: RunningService? = null
     private var bound = false
-    private val mTextMessage: TextView? = null
-    private val buttonFab: FloatingActionButton? = null
-    private  var buttonFabRun:FloatingActionButton? = null
-    private  var buttonFabStop:FloatingActionButton? = null
-    private  var buttonFabPause:FloatingActionButton? = null
 
     private var trip = false
-    private var pressedFAB = false
     private var timing: Long = 0
     private  var timingPause:kotlin.Long = 0
     private  var secondsPause:kotlin.Long = 0
@@ -56,10 +59,14 @@ class RunFragment : Fragment() {
     private  var timingStr:kotlin.String? = null
     private var speed = 0.0
     private  var distance:kotlin.Double = 0.0
-    var tableLayoutGo: TableLayout? = null
-    var tableLayoutWear:TableLayout? = null
-    var contaner: ConstraintLayout? = null
+    private var lastLocation : Location? = null
     private lateinit var binding :FragmentRunBinding
+
+    private val runningViewModel: RunningViewModel by activityViewModels() {
+        RunningViewModel.RunningViewModelFactory(
+            (this.activity?.application as RacetrackApplication).workoutTypeRepository,
+            requireActivity().application)
+    }
 
     private val connection: ServiceConnection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName, service: IBinder) {
@@ -97,12 +104,16 @@ class RunFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentRunBinding.bind(view)
-        binding.floatingActionButton.setOnClickListener{
-            onClickedFab(it)
-        }
-        binding.floatingActionButtonRun.setOnClickListener{
+
+        binding.buttonRun.setOnClickListener{
             onClickStart(it)
         }
+        binding.buttonStop.setOnClickListener{
+            onClickStart(it)
+        }
+        runningViewModel.elapsedTime.observe(viewLifecycleOwner,{
+            it -> binding.tvTime.setText(toSeconds(it))
+        })
 
     }
 
@@ -127,39 +138,31 @@ class RunFragment : Fragment() {
             }
     }
 
-    fun onClickedFab(view: View) {
-        pressedFAB = if (pressedFAB) {
-            binding.floatingActionButton.setImageDrawable(getDrawable(requireContext(),R.drawable.ic_add_black_48dp))
-            binding.floatingActionButtonRun.hide()
-            binding.floatingActionButtonPause.hide()
-            binding.floatingActionButtonStop.hide()
-            binding.container.setBackgroundColor(getColor(requireContext(), R.color.white))
-            !pressedFAB
-        } else {
-            binding.floatingActionButton.setRippleColor(getColor(requireContext(),R.color.colorPrimary))
-            binding.floatingActionButton.setImageDrawable(getDrawable(requireContext(),R.drawable.ic_clear_white_48dp))
-            binding.floatingActionButtonRun.show()
-            binding.floatingActionButtonPause.show()
-            binding.floatingActionButtonStop.show()
-            binding.container.setBackgroundColor(getColor(requireContext(),R.color.colorPrimaryDarkSuper))
-            !pressedFAB
-        }
-    }
+
     fun onClickStart(view: View) {
-        trip = true
+        trip = !trip
         timingPause = 0
         secondsPause = 0
         onClickedTrip(trip)
-        onClickedFab(view)
+        runningViewModel.elapsedTime.observe(viewLifecycleOwner,{
+                it -> binding.tvTime.setText("${toMinutes(it)}:${toSeconds(it)}")
+        })
+        runningViewModel.getLocationData().observe(viewLifecycleOwner,{
+            Toast.makeText(activity,"Location ${it.location.toString()}",Toast.LENGTH_LONG).show()
+            if (lastLocation!=null) distance = it.location.distanceTo(lastLocation) + distance
+            binding.tvTrip.setText((Math.round(distance*100)/100).toString())
+            lastLocation = it.location
+        })
+
     }
     fun onClickedTrip(trip: Boolean) {
         if (trip) {
             timing = Calendar.getInstance().timeInMillis / 1000
             binding.tableLayout.visibility = TableLayout.VISIBLE
-            binding.tableLayoutWear.visibility = TableLayout.VISIBLE
+            runningViewModel.startTimer(100)
         } else {
-            binding.tableLayout.visibility = TableLayout.INVISIBLE
-            binding.tableLayoutWear.visibility = TableLayout.INVISIBLE
+            //binding.tableLayout.visibility = TableLayout.INVISIBLE
+            runningViewModel.stopTimer()
             timing = 0
         }
     }
@@ -169,7 +172,7 @@ class RunFragment : Fragment() {
         val timeView = binding.tvTime //findViewById(R.id.tv_time) as TextView
         val avView = binding.tvAv // findViewById(R.id.tv_av) as TextView
         val calloriesView = binding.tvCalories//findViewById(R.id.tv_calories) as TextView
-        val handler = Handler()
+        val handler = Handler(Looper.getMainLooper())
         //TODO Calories!
         handler.post(object : Runnable {
             override fun run() {
@@ -195,7 +198,7 @@ class RunFragment : Fragment() {
                     timeView.text = timingStr
                     avView.text = String.format("%1$.2f", distance * 3600 / seconds)
                 }
-                handler.postDelayed(this, 1000)
+                handler.postDelayed(this, 5_000)
             }
         })
     }

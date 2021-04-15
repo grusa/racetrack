@@ -10,53 +10,62 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
+
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.RecyclerView
 import earth.sochi.racetrack.database.WorkoutType
+import earth.sochi.racetrack.databinding.FragmentRvBinding
 import earth.sochi.racetrack.workout.WorkoutTypeListAdapter
 import earth.sochi.racetrack.viewmodels.WorkoutViewModel
 import earth.sochi.racetrack.viewmodels.WorkoutTypeViewModel
 import java.security.Permission
+import java.util.zip.Inflater
 
  private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 class RvFragment : Fragment() {
-    private val workoutTypeViewModel: WorkoutTypeViewModel by activityViewModels ()
+    private val workoutTypeViewModel: WorkoutTypeViewModel by activityViewModels()
     {
         WorkoutTypeViewModel.WorkoutTypeViewModelFactory(
             (this.activity?.application as RacetrackApplication).workoutTypeRepository)
     }
+    private lateinit var  binding: FragmentRvBinding
+
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-
-        // Inflate the layout for this fragment
-
-        val view = inflater.inflate(R.layout.fragment_rv, container, false)
-        val recyclerView: RecyclerView =view.findViewById(R.id.list_recyclerview)
+    ): View {
+        val view:View  = inflater.inflate(R.layout.fragment_rv,container,false)
         val tikTakAdapter = WorkoutTypeListAdapter()
-        recyclerView.adapter = tikTakAdapter
+        binding = FragmentRvBinding.bind(view)
+        binding.listRecyclerview.adapter= tikTakAdapter
+        //recyclerView.adapter = tikTakAdapter
         workoutTypeViewModel.workoutTypes.observe( viewLifecycleOwner) {
                 workoutTypes ->
             // Update the cached copy of the words in the adapter.
             workoutTypes.let { tikTakAdapter.submitList(it) }
         }
         val itemDecorator =
-            DividerItemDecoration(recyclerView.context, DividerItemDecoration.VERTICAL)
+            DividerItemDecoration(binding.listRecyclerview.context, DividerItemDecoration.VERTICAL)
         itemDecorator.setDrawable(
-            ContextCompat.getDrawable(recyclerView.context,
+            ContextCompat.getDrawable(binding.listRecyclerview.context,
                 R.drawable.twcolor)!!)
-        recyclerView.addItemDecoration(itemDecorator)
+        binding.listRecyclerview.addItemDecoration(itemDecorator)
         checkPermission()
-        return view //inflater.inflate(R.layout.fragment_rv, container, false)
+                return view
+        //super.onCreateView(inflater, container, savedInstanceState)
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 
     companion object {

@@ -5,7 +5,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/constraint_layout">
+        android:id="@+id/constraint_layout"
+        android:background="@color/colorPrimaryLightSuper">
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -84,19 +85,15 @@
                     android:textSize="48sp" />
             </TableRow>
         </TableLayout>
-        <SeekBar
-             android:id="@+id/seekBar"
-             style="@style/Widget.AppCompat.SeekBar.Discrete"
-             android:layout_width="match_parent"
-             android:layout_height="36dp"
-             android:layout_margin="8dp"
-
-             android:max="3"
-             android:progress="0"
-             app:layout_constraintEnd_toEndOf="parent"
-             app:layout_constraintStart_toStartOf="parent"
-             app:layout_constraintTop_toBottomOf="@+id/table_layout"/>
-        <Button
+        <com.google.android.material.progressindicator.LinearProgressIndicator
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/progress_indicator_second_pause"
+            android:indeterminate="false"
+            app:layout_constraintTop_toBottomOf="@+id/table_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -104,9 +101,10 @@
             android:layout_marginTop="12dp"
             android:layout_marginRight="8dp"
             android:background="@drawable/twcolor"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
             android:text="@string/start"
             android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+            app:layout_constraintTop_toBottomOf="@+id/progress_indicator_second_pause" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

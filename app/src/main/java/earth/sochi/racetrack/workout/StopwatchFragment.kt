@@ -39,7 +39,7 @@ class StopwatchFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
     private fun startClick(){
-        val animator = ObjectAnimator.ofFloat(binding.arrowImage, View.ROTATION, -360f, 0f)
+//        val animator = ObjectAnimator.ofFloat(binding.arrowImage, View.ROTATION, -360f, 0f)
         if (startStop) {
             binding.buttonStart.text = getString(R.string.stop)
             binding.stopwatchTv.start()
@@ -47,16 +47,16 @@ class StopwatchFragment : Fragment() {
                 else binding.stopwatchTv.setBase(time.toLong())
             binding.buttonResume.visibility = View.INVISIBLE
             //Animation
-            animator.duration = 60_000
-            animator.repeatCount = 50
-            animator.start()
+//            animator.duration = 60_000
+//            animator.repeatCount = 50
+//            animator.start()
             //Animation
             startStop=false
         } else {
             binding.buttonStart.text = getString(R.string.start)
             binding.stopwatchTv.stop()
             time = binding.stopwatchTv.getBase()
-            animator.pause()
+//            animator.pause()
             binding.buttonResume.visibility = View.VISIBLE
             startStop=true
         }

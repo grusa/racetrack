@@ -4,11 +4,14 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
-import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+import earth.sochi.racetrack.database.Weight
+import java.text.SimpleDateFormat
+import java.util.*
 
+private val TAG = "UTIL"
+public var weightList:List<Weight> = listOf()
 fun Context.hasPermission(permission: String): Boolean {
 
     // Background permissions didn't exit prior to Q, so it's approved by default.
@@ -55,13 +58,29 @@ fun calculateDistance(lat1: Double, lon1: Double, lat2: Double, lon2: Double): D
 private fun deg2rad(deg: Double): Double {return deg * Math.PI / 180.0}
 
 private fun rad2deg(rad: Double) : Double {return rad * 180.0 / Math.PI}
-fun toSeconds(timeInterval:Long):Long {
-    return timeInterval % 60
+
+fun toSeconds(timeInterval:Long):String {
+    if ((timeInterval % 60)<10) {return "0${(timeInterval % 60).toString()}"}
+    else {return  (timeInterval % 60).toString()}
 }
-fun toMinutes(timeInterval:Long):Long {
-    return timeInterval/60
+fun toMinutes(timeInterval:Long):String {
+    if ((timeInterval/60)<10) {return "0${(timeInterval/60).toString()}"}
+    else {return  (timeInterval/60).toString()}
 }
 fun toSeconds (minutes:Long,seconds:Long):Long {
     return minutes*60 + seconds
+}
+fun stringFromWeight(weight:Weight) :String {
+    return "${weight.weight_kilo.toString()}.${weight.weight_gramm.toString()}"
+}
+fun toDate(date:Long) : String {
+    return "01/01/2021"
+}
+fun getDate(milliSeconds: Long): String? {
+    val dateFormat: String = "DD/MM/YYYY"
+    val formatter = SimpleDateFormat(dateFormat)
+    val calendar = Calendar.getInstance()
+    calendar.timeInMillis = milliSeconds
+    return formatter.format(calendar.time)
 }
 

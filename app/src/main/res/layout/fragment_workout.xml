@@ -7,76 +7,38 @@
         android:id="@+id/workoutFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         tools:context=".workout.WorkoutFragment">
 
-        <TextView
-            android:id="@+id/distance_tv"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/workout_type_rv"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:text="@string/start_distance"
-            android:textSize="48sp"
-            android:textAlignment="center"
+            android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintTop_toTopOf="parent"/>
         <Button
             android:id="@+id/start_Bt"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_width="50dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
             android:gravity="center"
             android:text="@string/start"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintWidth_percent="0.5"
             app:layout_constraintStart_toEndOf="@+id/pause_Bt"
-            app:layout_constraintTop_toBottomOf="@+id/time_tv" />
+            app:layout_constraintTop_toBottomOf="@+id/workout_type_rv"
+            />
 
-        <TextView
-            android:id="@+id/speed_tv"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:text="@string/start_distance"
-            android:textSize="48sp"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/distance_tv" />
-
-        <TextView
-            android:id="@+id/pace_tv"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:text="@string/start_distance"
-            android:textSize="48sp"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/speed_tv" />
-        <Chronometer
-            android:id="@+id/time_tv"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:gravity="center"
-            android:text="@string/start_distance"
-            android:textSize="48sp"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pace_tv"  />
         <Button
             android:id="@+id/pause_Bt"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_width="50dp"
+            android:layout_height="0dp"
+            android:layout_margin="8dp"
+            android:layout_marginStart="16dp"
             android:text="Pause"
-            app:layout_constraintWidth_percent="0.5"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/time_tv" />
+            app:layout_constraintTop_toBottomOf="@+id/workout_type_rv"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

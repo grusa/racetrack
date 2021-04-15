@@ -1,5 +1,6 @@
 package earth.sochi.racetrack.database
 
+import android.location.Location
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -17,6 +18,28 @@ data class Workout constructor(
         val thumbnail: String,
         val date:Long){
         override fun toString() = "$name $type at $date"
+}
+@Entity(tableName = "hiit_table")
+data class Hiit constructor(
+        @PrimaryKey(autoGenerate = false) @ColumnInfo(name = "id")
+        val id:Long,
+        val name: String,
+        val duration: Long, //minutes
+        val description: String,
+        val imageurl: String,
+        val email:String ){
+        override fun toString() = "HIIT:$name - $duration minutes by $email"
+}
+@Entity(tableName = "exercise_table")
+data class Exercise constructor(
+        @PrimaryKey(autoGenerate = false) @ColumnInfo(name = "id")
+        val id:Long,
+        val hiit_id:Long,
+        val name: String,
+        val duration: Long, //minutes
+        val description: String,
+        val imageurl: String ){
+        override fun toString() = "EXERCISE:$name - $duration minutes"
 }
 @Entity(tableName = "workout_type_table")
 data class WorkoutType constructor(
@@ -42,6 +65,20 @@ data class MyLocationEntity(
                         "${DateFormat.getDateTimeInstance().format(date)}.\n"
         }
 }
+@Entity(tableName = "weight_table")
+data class Weight(
+        @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id")
+        val id: Long,
+        var weight_kilo: Int = 0,
+        val weight_gramm: Int = 0,
+        val date: Long= 0
+)
+
+data class LocationModel(
+        val location : Location,
+        val longitude: Double,
+        val latitude: Double
+)
 
 
 

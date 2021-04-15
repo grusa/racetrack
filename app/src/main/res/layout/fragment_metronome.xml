@@ -12,37 +12,53 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/seconds_tv"
-            app:layout_constraintEnd_toEndOf="@+id/seconds_tv"
-            app:layout_constraintStart_toStartOf="@+id/seconds_tv"
-            app:srcCompat="@drawable/up" />
+            app:layout_constraintBottom_toTopOf="@+id/seconds_layout"
+            app:layout_constraintEnd_toEndOf="@+id/seconds_layout"
+            app:layout_constraintStart_toStartOf="@+id/seconds_layout"
+            app:srcCompat="@drawable/up"
+            style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
-        <EditText
-            android:id="@+id/seconds_tv"
-            android:layout_width="150dp"
-            android:layout_height="100dp"
-            android:ems="10"
-            android:inputType="number"
-            android:text="60"
-            android:textAlignment="center"
-            android:textSize="48sp"
-
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/seconds_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/beats_per_minute"
+            android:gravity="center_horizontal"
             app:layout_constraintBottom_toTopOf="@id/button_start"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/seconds_tv"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:ems="10"
+                android:inputType="number"
+
+                android:text="60"
+                android:textAlignment="center"
+                android:textSize="48sp"
+                app:layout_constraintBottom_toTopOf="@id/button_start"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@color/colorPrimaryLightSuper"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
         <ImageButton
             android:id="@+id/down_second_bt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="@+id/seconds_tv"
-            app:layout_constraintStart_toStartOf="@+id/seconds_tv"
-            app:layout_constraintTop_toBottomOf="@+id/seconds_tv"
-            app:srcCompat="@drawable/down" />
+            app:layout_constraintEnd_toEndOf="@+id/seconds_layout"
+            app:layout_constraintStart_toStartOf="@+id/seconds_layout"
+            app:layout_constraintTop_toBottomOf="@+id/seconds_layout"
+            app:srcCompat="@drawable/down"
+            style="@style/Widget.MaterialComponents.Button.TextButton"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -52,6 +68,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/seconds_tv" />
+            app:layout_constraintTop_toBottomOf="@id/seconds_layout"
+            style="@style/Widget.MaterialComponents.Button.TextButton"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

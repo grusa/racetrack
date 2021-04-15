@@ -16,7 +16,7 @@ import earth.sochi.racetrack.R
 import earth.sochi.racetrack.database.WorkoutType
 import java.util.stream.Collectors.toMap
 
-//New code from codelabs example
+
 class WorkoutTypeListAdapter : ListAdapter<WorkoutType,
         WorkoutTypeListAdapter.WorkoutTypeViewHolder>(WorkoutTypeComparator()) {
 
@@ -39,6 +39,7 @@ class WorkoutTypeListAdapter : ListAdapter<WorkoutType,
             3 -> view.findNavController().navigate(R.id.action_rvFragment_to_breathFragment)
             4 -> view.findNavController().navigate(R.id.action_rvFragment_to_runFragment)
             5 -> view.findNavController().navigate(R.id.action_rvFragment_to_hiitFragment)
+            6 -> view.findNavController().navigate(R.id.action_rvFragment_to_weightFragment)
         }}
     class WorkoutTypeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val workoutTypeItemView: TextView = itemView.findViewById(R.id.tiktak_textView)

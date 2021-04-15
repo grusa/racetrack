@@ -2,105 +2,116 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".workout.TimerFragment"
-    android:background="@color/colorPrimaryLightSuper">
 
-    <ImageButton
-        android:id="@+id/up_minutes_bt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/minutes_tv"
-        app:layout_constraintEnd_toEndOf="@+id/minutes_tv"
-        app:layout_constraintStart_toStartOf="@+id/minutes_tv"
-        app:srcCompat="@drawable/up" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryLightSuper"
+        tools:context=".workout.TimerFragment">
 
-    <EditText
-        android:id="@+id/minutes_tv"
-        android:text="00"
-        android:textSize="48sp"
-        android:textAlignment="center"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="48dp"
-        android:ems="10"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="@+id/seconds_tv"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/seconds_tv" />
+        <ImageButton
+            android:id="@+id/up_minutes_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@color/colorPrimaryLight"
+            app:layout_constraintBottom_toTopOf="@+id/minutes_tv"
+            app:layout_constraintEnd_toEndOf="@+id/minutes_tv"
+            app:layout_constraintStart_toStartOf="@+id/minutes_tv"
+            app:srcCompat="@drawable/up" />
 
-    <ImageButton
-        android:id="@+id/down_minutes_bt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/minutes_tv"
-        app:layout_constraintStart_toStartOf="@+id/minutes_tv"
-        app:layout_constraintTop_toBottomOf="@+id/minutes_tv"
-        app:srcCompat="@drawable/down" />
+        <EditText
+            android:id="@+id/minutes_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number"
+            android:text="00"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="60sp"
+            app:layout_constraintBottom_toBottomOf="@+id/seconds_tv"
+            app:layout_constraintEnd_toStartOf="@+id/seconds_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/seconds_tv"/>
 
-    <ImageButton
-        android:id="@+id/up_second_bt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/seconds_tv"
-        app:layout_constraintEnd_toEndOf="@+id/seconds_tv"
-        app:layout_constraintStart_toStartOf="@+id/seconds_tv"
-        app:srcCompat="@drawable/up" />
 
-    <EditText
-        android:id="@+id/seconds_tv"
-        android:text="00"
-        android:textAlignment="center"
-        android:textSize="48sp"
-        android:layout_width="150dp"
-        android:layout_height="100dp"
-        android:ems="10"
-        android:inputType="number"
+        <EditText
+            android:id="@+id/seconds_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:text="00"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="60sp"
 
-        app:layout_constraintBottom_toTopOf="@id/button_start"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.349"
-        app:layout_constraintStart_toEndOf="@+id/minutes_tv"
-        app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBottom_toTopOf="@id/button_start"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/minutes_tv"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/down_second_bt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/seconds_tv"
-        app:layout_constraintStart_toStartOf="@+id/seconds_tv"
-        app:layout_constraintTop_toBottomOf="@+id/seconds_tv"
+        <ImageButton
+            android:id="@+id/down_minutes_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorPrimaryLight"
+            app:layout_constraintEnd_toEndOf="@+id/minutes_tv"
+            app:layout_constraintStart_toStartOf="@+id/minutes_tv"
+            app:layout_constraintTop_toBottomOf="@+id/minutes_tv"
+            app:srcCompat="@drawable/down" />
 
-        app:srcCompat="@drawable/down" />
+        <ImageButton
+            android:id="@+id/up_second_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@color/colorPrimaryLight"
+            app:layout_constraintBottom_toTopOf="@+id/seconds_tv"
+            app:layout_constraintEnd_toEndOf="@+id/seconds_tv"
+            app:layout_constraintStart_toStartOf="@+id/seconds_tv"
+            app:srcCompat="@drawable/up" />
 
-    <Button
-        android:id="@+id/button_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/start"
-        android:textSize="36sp"
-        android:background="@drawable/twcolor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/button_resume"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/seconds_tv"
-        />
-    <Button
-        android:id="@+id/button_resume"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/resume"
-        android:textSize="36sp"
-        android:background="@drawable/twcolor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/button_start"
-        app:layout_constraintTop_toBottomOf="@id/seconds_tv" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageButton
+            android:id="@+id/down_second_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorPrimaryLight"
+            app:layout_constraintEnd_toEndOf="@+id/seconds_tv"
+            app:layout_constraintStart_toStartOf="@+id/seconds_tv"
+            app:layout_constraintTop_toBottomOf="@+id/seconds_tv"
+            app:srcCompat="@drawable/down" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_start"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/twcolor"
+            android:text="@string/start"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/button_resume"
+            app:layout_constraintTop_toBottomOf="@id/seconds_tv"
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_resume"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/twcolor"
+            android:text="@string/resume"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/button_start"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seconds_tv"
+
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

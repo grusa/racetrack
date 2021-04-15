@@ -36,5 +36,4 @@
             android:background="@color/colorPrimary"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </layout>

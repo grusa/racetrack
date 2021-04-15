@@ -17,6 +17,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.*
+import com.google.android.material.timepicker.MaterialTimePicker
+import com.google.android.material.timepicker.TimeFormat
 import earth.sochi.racetrack.*
 import earth.sochi.racetrack.databinding.FragmentTimerBinding
 import earth.sochi.racetrack.viewmodels.TimeManagerViewModel
@@ -76,7 +78,7 @@ private lateinit var binding :FragmentTimerBinding
         binding.downSecondBt.setOnClickListener(clickListener)
         //binding.upSecondBt.setOnClickListener{ binding.secondsTv.setText ((Integer.parseInt(binding.secondsTv.text.toString())+1).toString())}
         //binding.downSecondBt.setOnClickListener{ binding.secondsTv.setText ((Integer.parseInt(binding.secondsTv.text.toString())-1).toString())}
-
+        binding.buttonResume.visibility = View.INVISIBLE
         binding.buttonStart.setOnClickListener{startClick()}
         timeManagerViewModel.elapsedTime.observe(viewLifecycleOwner, Observer {
             it ->
@@ -89,13 +91,25 @@ private lateinit var binding :FragmentTimerBinding
                 it -> if (it) goAlarm()
         })
         binding.buttonResume.setOnClickListener {resumeClick()}
+//        binding.buttonResume.visibility = View.INVISIBLE
+
+
         binding.buttonStart.setOnClickListener {startClick()}
 
     }
     fun resumeClick() {
-        timeManagerViewModel.resetTimer()
-        binding.buttonStart.text = getText(R.string.start)
-        startStop = true
+        val picker =
+            MaterialTimePicker.Builder()
+                .setTimeFormat(TimeFormat.CLOCK_12H)
+                .setHour(12)
+                .setMinute(10)
+                //.setTitle("Select Appointment time")
+                .build()
+        picker.show(parentFragmentManager, "tag");
+
+//        timeManagerViewModel.resetTimer()
+//        binding.buttonStart.text = getText(R.string.start)
+//        startStop = true
     }
     fun goAlarm() {
         binding.buttonStart.text = getText(R.string.start)

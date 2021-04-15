@@ -6,8 +6,10 @@ import kotlinx.coroutines.launch
 
 class WorkoutTypeViewModel (private val repository : WorkoutTypeRepository)
         : ViewModel() {
+
         private val _workoutTypes : LiveData<List<WorkoutType>> =
             repository.allWorkoutTypes.asLiveData()
+
         val workoutTypes :LiveData<List<WorkoutType>>
         get() = _workoutTypes
 

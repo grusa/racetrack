@@ -32,18 +32,12 @@ class BreathViewModel (private val repository: WorkoutTypeRepository) : ViewMode
     private var timer: CountDownTimer?=null
     private var triggerTime=0L
 
-    fun setTimeSelected(timerLengthSelection: Int) {
-       // _timeSelection.value = (timerLengthSelection * second).toInt()
-        _elapsedTime.value = timerLengthSelection.toLong() * second
-    }
-    fun resetTimer() {
-        //button Reset pressed
-        if (timer !=null) timer?.cancel()
-    }
+
     fun stopTimer() {
         if (timer !=null) timer?.cancel()
         _elapsedTime.value = 0
         startAlarm.value=true
+        viewModelScope.cancel()
     }
     fun startTimer(timerLengthSelection: Long) {
         triggerTime = SystemClock.elapsedRealtime()+timerLengthSelection*second
@@ -56,7 +50,6 @@ class BreathViewModel (private val repository: WorkoutTypeRepository) : ViewMode
                 override fun onTick(millisUntilFinished: Long) {
                     _elapsedTime.value = (triggerTime - SystemClock.elapsedRealtime())/second
                     if (_elapsedTime.value!! <= 0) {
-                        resetTimer()
                         stopTimer()
                     }
                 }
@@ -66,14 +59,7 @@ class BreathViewModel (private val repository: WorkoutTypeRepository) : ViewMode
             }.start()
         }
     }
-    private fun createMetronom(beats:Int) {
-        viewModelScope.launch {
-            while (true) {
-                _metronomTime.value = true
-                delay((beats/60).toLong())
-            }
-        }
-    }
+
     class BreathViewModelFactory(private val repository: WorkoutTypeRepository) :
         ViewModelProvider.Factory {
         override fun <T : ViewModel> create(modelClass: Class<T>): T {

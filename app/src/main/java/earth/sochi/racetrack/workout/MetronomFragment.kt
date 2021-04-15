@@ -8,6 +8,7 @@ import android.content.ServiceConnection
 import android.content.res.Resources.getSystem
 import android.os.Bundle
 import android.os.IBinder
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +25,8 @@ import earth.sochi.racetrack.viewmodels.TimeManagerViewModel
 
 class MetronomeFragment : Fragment() {
     private lateinit var binding : FragmentMetronomeBinding
-    private var startStop:Boolean=true
+    private val TAG="METRONOMFRAGMENT"
+    private var startStop:Boolean=false
     private val timeManagerViewModel: TimeManagerViewModel by activityViewModels() {
         TimeManagerViewModel.TimeManagerViewModelFactory((this.activity?.application as RacetrackApplication).workoutTypeRepository)
     }
@@ -45,7 +47,7 @@ class MetronomeFragment : Fragment() {
         binding.upSecondBt.setOnClickListener(clickListener)
         binding.downSecondBt.setOnClickListener(clickListener)
         binding.buttonStart.setOnClickListener {startClick()}
-        if (!startStop) {
+        if (startStop) {
             binding.buttonStart.text = getText(R.string.stop)
         }
 
@@ -61,9 +63,9 @@ class MetronomeFragment : Fragment() {
         }
     }
     fun startClick() {
-        if (startStop) {
+        if (!startStop) {
             binding.buttonStart.text = getText(R.string.stop)
-            startStop = false
+            startStop = true
             try {
                 timer = Integer.valueOf(60000 / Integer.valueOf(binding.secondsTv.getText().toString()))
                 //timer = 50000; //TODO timer calculation
@@ -80,9 +82,12 @@ class MetronomeFragment : Fragment() {
             }
         } else {
             binding.buttonStart.text = getText(R.string.start)
-            startStop = true
-
-            requireActivity().unbindService(serviceConnection)
+            startStop = false
+            try {
+                requireActivity().unbindService(serviceConnection)
+            } catch (e : Exception) {
+                Log.d(TAG,e.toString())
+            }
         }
     }
     private val serviceConnection: ServiceConnection = object : ServiceConnection {

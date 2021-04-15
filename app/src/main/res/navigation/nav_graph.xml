@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_rvFragment_to_hiitFragment"
             app:destination="@id/hiitFragment" />
+        <action
+            android:id="@+id/action_rvFragment_to_weightFragment"
+            app:destination="@id/weightFragment" />
     </fragment>
     <fragment
         android:id="@+id/metronomeFragment"
@@ -55,5 +58,22 @@
         android:id="@+id/hiitFragment"
         android:name="earth.sochi.racetrack.workout.HiitFragment"
         android:label="fragment_hiit"
-        tools:layout="@layout/fragment_hiit" />
+        tools:layout="@layout/fragment_hiit" >
+        <action
+            android:id="@+id/action_hiitFragment_to_exerciseFragment"
+            app:destination="@id/exerciseFragment">
+            <argument
+                android:name="hiitId"
+                app:argType="integer"
+                android:defaultValue="-1" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/weightFragment"
+        android:name="earth.sochi.racetrack.workout.WeightFragment"
+        android:label="WeightFragment" />
+    <fragment
+        android:id="@+id/exerciseFragment"
+        android:name="earth.sochi.racetrack.workout.ExerciseFragment"
+        android:label="ExerciseFragment" />
 </navigation>
