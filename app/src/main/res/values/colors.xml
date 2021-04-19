@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
 
     <color name="colorPrimary">#2626A1</color>
     <color name="colorPrimaryDark">#343464</color>
@@ -9,27 +8,13 @@
     <color name="colorPrimaryLight">#7979E7</color>
     <color name="colorPrimaryLightSuper">#AEAEE7</color>
 
-    <color name="colorSecondary">#CD154C</color>
     <color name="colorSecondaryDark">#80384E</color>
-    <color name="colorSecondaryDarkSuper">#61021F</color>
     <color name="colorSecondaryLight">#F36A93</color>
-    <color name="colorSecondaryLightSuper">#F3ACC1</color>
 
     <color name="colorSecondaryB">#68CC14</color>
-    <color name="colorSecondaryBDark">#588038</color>
-    <color name="colorSecondaryBDarkSuper">#2D6102</color>
-    <color name="colorSecondaryBLight">#A8F26A</color>
-    <color name="colorSecondaryBLightSuper">#CCF2AB</color>
 
 
     <color name="colorAccent">#E6B217</color>
-    <color name="colorAccentDark">#8F7B3F</color>
-    <color name="colorAccentDarkSuper">#6D5203</color>
-    <color name="colorAccentLight">#F9D66D</color>
-    <color name="colorAccentLightSuper">#F9E6B0</color>
-
-    <color name="textOnPrimary">@color/black</color>
-    <color name="textOnPrimaryDark">@color/white</color>
 
     <!-- old color. Not fine, not contrast
     <color name="black">#FF000000</color>

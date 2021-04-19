@@ -13,7 +13,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import earth.sochi.racetrack.R
-import earth.sochi.racetrack.databinding.FragmentListWorkoutBinding
 import earth.sochi.racetrack.databinding.FragmentStopwatchBinding
 import kotlinx.coroutines.NonCancellable.cancel
 
