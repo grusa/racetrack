@@ -5,30 +5,57 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/constraint_layout"
-        android:background="@color/colorPrimaryLightSuper">
+        android:id="@+id/constraint_layout">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:id="@+id/back_bt"
+                    style="@style/ButtonMain"
+                    android:layout_width="?attr/actionBarSize"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/arrow_white" />
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/topAppBar"
+                    style="@style/ButtonMain"
+                    app:titleTextColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_constraintStart_toEndOf="@id/back_bt"
+                    android:gravity="center_vertical"
+                    app:title="@string/breath"/>
+            </LinearLayout>
+        </com.google.android.material.appbar.AppBarLayout>
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/table_layout"
-            app:layout_constraintTop_toTopOf="@+id/constraint_layout">
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
             <TableRow
                 android:id="@+id/inhale_tr">
             <EditText
                     android:id="@+id/inhale_tv"
-                    android:layout_width="154dp"
-                    android:layout_height="80dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:inputType="number"
-                    android:text="0"
+                    android:text="00"
                     android:textAlignment="center"
                     android:textSize="48sp" />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/inhale"
-                android:layout_margin="8dp"
-                android:textSize="48sp"/>
+                style="@style/EditTextBreathe"/>
             </TableRow>
             <TableRow
                 android:id="@+id/first_pause_tr">
@@ -36,12 +63,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/pause"
-                    android:layout_margin="8dp"
-                    android:textSize="48sp"/>
+                    style="@style/EditTextBreathe"/>
                 <EditText
                     android:id="@+id/first_pause_tv"
-                    android:layout_width="154dp"
-                    android:layout_height="80dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:inputType="number"
                     android:layout_margin="8dp"
                     android:text="00"
@@ -52,8 +78,8 @@
                 android:id="@+id/exhale_tr">
                 <EditText
                     android:id="@+id/exhale_tv"
-                    android:layout_width="154dp"
-                    android:layout_height="80dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:inputType="number"
                     android:layout_margin="8dp"
                     android:text="00"
@@ -63,8 +89,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/exhale"
-                    android:layout_margin="8dp"
-                    android:textSize="48sp"/>
+                    style="@style/EditTextBreathe"/>
             </TableRow>
             <TableRow
                 android:id="@+id/second_pause_tr">
@@ -72,12 +97,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/pause"
-                    android:layout_margin="8dp"
-                    android:textSize="48sp"/>
+                    style="@style/EditTextBreathe"/>
                 <EditText
                     android:id="@+id/second_pause_tv"
-                    android:layout_width="154dp"
-                    android:layout_height="80dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:inputType="number"
                     android:text="00"
                     android:textAlignment="center"
@@ -100,10 +124,8 @@
             android:layout_marginVertical="8dp"
             android:layout_marginTop="12dp"
             android:layout_marginRight="8dp"
-            android:background="@drawable/twcolor"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
+            style="@style/ButtonMain"
             android:text="@string/start"
-            android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/progress_indicator_second_pause" />
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,17 +8,13 @@
     android:elevation="2dp"
     card_view:cardCornerRadius="8dp"
     card_view:cardUseCompatPadding="true"
-    card_view:cardElevation="2dp"
-    android:background="@color/colorSecondaryB">
-
+    card_view:cardElevation="2dp">
     <TextView
         android:id="@+id/tiktak_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorPrimaryDarkSuper"
-
         android:textSize="48sp"
         android:textColorLink="@color/black"
-        android:textColorHighlight="@color/colorAccent"
-        android:background="@color/colorPrimaryLight"/>
+        android:textColorHighlight="@color/colorAccent"/>
 </androidx.cardview.widget.CardView>

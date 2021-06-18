@@ -6,17 +6,17 @@
     app:startDestination="@id/rvFragment">
     <fragment
         android:id="@+id/stopwatchFragment"
-        android:name="earth.sochi.racetrack.workout.StopwatchFragment"
+        android:name="earth.sochi.goyoga.workout.StopwatchFragment"
         android:label="fragment_stopwatch"
         tools:layout="@layout/fragment_stopwatch" />
     <fragment
         android:id="@+id/timerFragment"
-        android:name="earth.sochi.racetrack.workout.TimerFragment"
+        android:name="earth.sochi.goyoga.workout.TimerFragment"
         android:label="fragment_timer"
         tools:layout="@layout/fragment_timer" />
     <fragment
         android:id="@+id/rvFragment"
-        android:name="earth.sochi.racetrack.RvFragment"
+        android:name="earth.sochi.goyoga.RvFragment"
         android:label="fragment_rv"
         tools:layout="@layout/fragment_rv" >
         <action
@@ -43,20 +43,20 @@
     </fragment>
     <fragment
         android:id="@+id/metronomeFragment"
-        android:name="earth.sochi.racetrack.workout.MetronomeFragment"
+        android:name="earth.sochi.goyoga.workout.MetronomeFragment"
         android:label="MetronomeFragment" />
     <fragment
         android:id="@+id/breathFragment"
-        android:name="earth.sochi.racetrack.workout.BreathFragment"
+        android:name="earth.sochi.goyoga.workout.BreathFragment"
         android:label="BreathFragment" />
     <fragment
         android:id="@+id/runFragment"
-        android:name="earth.sochi.racetrack.workout.RunFragment"
+        android:name="earth.sochi.goyoga.workout.RunFragment"
         android:label="fragment_run"
         tools:layout="@layout/fragment_run" />
     <fragment
         android:id="@+id/hiitFragment"
-        android:name="earth.sochi.racetrack.workout.HiitFragment"
+        android:name="earth.sochi.goyoga.workout.HiitFragment"
         android:label="fragment_hiit"
         tools:layout="@layout/fragment_hiit" >
         <action
@@ -70,10 +70,10 @@
     </fragment>
     <fragment
         android:id="@+id/weightFragment"
-        android:name="earth.sochi.racetrack.workout.WeightFragment"
+        android:name="earth.sochi.goyoga.workout.WeightFragment"
         android:label="WeightFragment" />
     <fragment
         android:id="@+id/exerciseFragment"
-        android:name="earth.sochi.racetrack.workout.ExerciseFragment"
+        android:name="earth.sochi.goyoga.workout.ExerciseFragment"
         android:label="ExerciseFragment" />
 </navigation>

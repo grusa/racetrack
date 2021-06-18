@@ -5,8 +5,36 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".workout.RunFragment"
-    android:background="@color/colorPrimaryLightSuper">
+    tools:context=".workout.RunFragment">
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:id="@+id/back_bt"
+                style="@style/ButtonMain"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/arrow_white" />
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                style="@style/ButtonMain"
+                app:titleTextColor="@color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_constraintStart_toEndOf="@id/back_bt"
+                android:gravity="center_vertical"
+                app:title="@string/running"/>
+        </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
         android:id="@+id/message"
@@ -16,12 +44,13 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:text="0.0"
-        android:textSize="108sp"
+        android:textSize="60sp"
+        android:textColor="@color/colorAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
 
     <TableLayout
         android:id="@+id/tableLayout"
@@ -44,132 +73,109 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
-                android:layout_weight="33"
-                android:background="@drawable/tablelayoutborder"
+                android:layout_weight="5"
+                android:textSize="24sp"
                 android:text="@string/distance"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_weight="33"
-                android:background="@drawable/tablelayoutborder"
-                android:text="@string/time"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_column="2"
-                android:layout_weight="33"
-                android:background="@drawable/tablelayoutborder"
-                android:text="@string/avSpeed"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+                style="@style/EditText"
+                />
             <TextView
                 android:id="@+id/tv_trip"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:layout_weight="33"
-                android:background="@drawable/tablelayoutborder"
+                android:layout_column="1"
+                android:layout_weight="5"
                 android:text="@string/defaultDistance"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-
+                style="@style/EditText" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"        >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_weight="50"
+                android:textSize="24sp"
+                android:text="@string/time"
+                style="@style/EditText" />
             <TextView
                 android:id="@+id/tv_time"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_column="1"
-                android:layout_weight="33"
-                android:background="@drawable/tablelayoutborder"
+                android:layout_weight="50"
                 android:text="@string/defaultTime"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/tv_av"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_column="2"
-                android:layout_weight="33"
-                android:background="@drawable/tablelayoutborder"
-                android:text="@string/defaultAV"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginTop="8dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_column="0"
-                android:layout_weight="50"
-                android:background="@drawable/tablelayoutwear"
-                android:text="@string/calories"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_column="1"
-                android:layout_weight="50"
-                android:background="@drawable/tablelayoutwear"
-                android:text="@string/chsr"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/tv_calories"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_column="0"
-                android:layout_weight="50"
-                android:background="@drawable/tablelayoutwear"
-                android:text="@string/defaultDistance"
-                android:textAlignment="center"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/tv_chsr"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_column="1"
-                android:layout_weight="50"
-                android:background="@drawable/tablelayoutwear"
-                android:text="@string/defaultTime"
-                android:textAlignment="center"
-                android:textSize="18sp" />
+                style="@style/EditText"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_weight="50"
+                android:text="@string/avSpeed"
+                android:textSize="24sp"
+                style="@style/EditText" />
+            <TextView
+                android:id="@+id/tv_av"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_weight="50"
+                android:text="@string/defaultAV"
+                style="@style/EditText"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_weight="50"
+                android:text="@string/calories"
+                android:textSize="24sp"
+                style="@style/EditText"/>
+            <TextView
+                android:id="@+id/tv_calories"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_weight="50"
+                android:text="@string/defaultDistance"
+                style="@style/EditText"/>
+        </TableRow>
+<!--        <TableRow-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent">-->
+<!--            <TextView-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_column="0"-->
+<!--                android:layout_weight="50"-->
+<!--                android:background="@drawable/tablelayoutwear"-->
+<!--                android:text="@string/chsr"-->
+<!--                style="@style/EditText"/>-->
+<!--            <TextView-->
+<!--                android:id="@+id/tv_chsr"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_column="1"-->
+<!--                android:layout_weight="50"-->
+<!--                android:background="@drawable/tablelayoutwear"-->
+<!--                android:text="@string/defaultTime"-->
+<!--                style ="@style/EditText" />-->
+<!--        </TableRow>-->
+        <TableRow
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp">
-
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/button_run"
+                android:id="@+id/button_pause"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_column="0"
@@ -178,10 +184,10 @@
                 android:background="@drawable/twcolor"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="RUN"
-                android:visibility="visible"
-                app:backgroundTint="@android:color/background_light" />
-
+                android:textSize="24sp"
+                android:text="@string/pause"
+                android:visibility="invisible"
+                style="@style/ButtonMain"/>
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_stop"
                 android:layout_width="0dp"
@@ -190,27 +196,28 @@
                 android:layout_marginVertical="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_weight="33"
+                android:textSize="24sp"
                 android:background="@drawable/twcolor"
                 android:clickable="true"
                 android:focusable="true"
                 android:text="STOP"
-                android:visibility="visible"
-                app:backgroundTint="@android:color/background_light" />
-
+                android:visibility="invisible"
+                style="@style/ButtonMain" />
             <Button
-                android:id="@+id/button_pause"
+                android:id="@+id/button_run"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_column="2"
                 android:layout_marginVertical="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_weight="33"
+                android:textSize="24sp"
                 android:background="@drawable/twcolor"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="@string/pause"
+                android:text="@string/run"
                 android:visibility="visible"
-                app:backgroundTint="@android:color/background_light" />
+                style="@style/ButtonMain"/>
         </TableRow>
     </TableLayout>
 

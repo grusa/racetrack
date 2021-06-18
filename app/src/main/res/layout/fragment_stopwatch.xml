@@ -4,19 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryLightSuper"
     tools:context=".workout.StopwatchFragment">
-
-    <!--    <ImageView-->
-    <!--        android:id="@+id/arrow_image"-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        android:src="@drawable/arrow"-->
-    <!--        app:layout_constraintHorizontal_bias="1.0"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintBottom_toTopOf="@id/stopwatch_tv"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
     <Chronometer
         android:id="@+id/stopwatch_tv"
         android:layout_width="match_parent"
@@ -30,7 +18,6 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <!--        app:layout_constraintTop_toBottomOf="@id/arrow_image"/>-->
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_resume"
