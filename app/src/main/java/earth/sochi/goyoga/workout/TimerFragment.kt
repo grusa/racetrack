@@ -35,12 +35,12 @@ private lateinit var binding :FragmentTimerBinding
     private lateinit var timer: CountDownTimer
 
     private val timeManagerViewModel: TimeManagerViewModel by activityViewModels() {
-    TimeManagerViewModel.TimeManagerViewModelFactory((this.activity?.application as RacetrackApplication).workoutTypeRepository)
+    TimeManagerViewModel.TimeManagerViewModelFactory((this.activity?.application as GoYogaApplication).workoutTypeRepository)
     }
     private val workoutTypeViewModel: WorkoutTypeViewModel by viewModels ()
     {
         WorkoutTypeViewModel.WorkoutTypeViewModelFactory(
-            (this.activity?.application as RacetrackApplication).workoutTypeRepository)
+            (this.activity?.application as GoYogaApplication).workoutTypeRepository)
     }
 
     val currentTimeDate = Transformations.map(currentTime) {

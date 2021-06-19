@@ -15,7 +15,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import earth.sochi.goyoga.R
-import earth.sochi.goyoga.RacetrackApplication
+import earth.sochi.goyoga.GoYogaApplication
 import earth.sochi.goyoga.database.Weight
 import earth.sochi.goyoga.databinding.FragmentWeightBinding
 import earth.sochi.goyoga.viewmodels.WeightViewModel
@@ -43,7 +43,7 @@ class WeightFragment : Fragment() {
     private val weightViewModel: WeightViewModel by activityViewModels()
     {
         WeightViewModel.WeightViewModelFactory(
-            (this.activity?.application as RacetrackApplication).workoutTypeRepository)
+            (this.activity?.application as GoYogaApplication).workoutTypeRepository)
     }
 
     var lastWeight: Weight = Weight(0, 0, 0, 0)

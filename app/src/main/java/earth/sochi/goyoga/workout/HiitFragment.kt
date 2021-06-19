@@ -10,7 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import earth.sochi.goyoga.R
-import earth.sochi.goyoga.RacetrackApplication
+import earth.sochi.goyoga.GoYogaApplication
 import earth.sochi.goyoga.databinding.FragmentHiitBinding
 import earth.sochi.goyoga.viewmodels.HiitViewModel
 
@@ -29,7 +29,7 @@ class HiitFragment : Fragment() {
     private var param2: String? = null
     private lateinit var  binding : FragmentHiitBinding
     private val hiitViewModel : HiitViewModel by activityViewModels() {
-        HiitViewModel.HiitViewModelFactory((this.activity?.application as RacetrackApplication).workoutTypeRepository)
+        HiitViewModel.HiitViewModelFactory((this.activity?.application as GoYogaApplication).workoutTypeRepository)
     }
 
     override fun onCreateView(

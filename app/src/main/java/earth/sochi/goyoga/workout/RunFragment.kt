@@ -17,7 +17,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TableLayout
 import android.widget.Toast
-import android.app.*
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
@@ -71,7 +70,7 @@ class RunFragment : Fragment() {
     private val weightViewModel: WeightViewModel by activityViewModels()
     {
         WeightViewModel.WeightViewModelFactory(
-            (this.activity?.application as RacetrackApplication).workoutTypeRepository)
+            (this.activity?.application as GoYogaApplication).workoutTypeRepository)
     }
 
 //    private val runningViewModel: RunningViewModel by activityViewModels() {

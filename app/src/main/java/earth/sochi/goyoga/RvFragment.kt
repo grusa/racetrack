@@ -23,7 +23,7 @@ class RvFragment : Fragment() {
     private val workoutTypeViewModel: WorkoutTypeViewModel by activityViewModels()
     {
         WorkoutTypeViewModel.WorkoutTypeViewModelFactory(
-            (this.activity?.application as RacetrackApplication).workoutTypeRepository)
+            (this.activity?.application as GoYogaApplication).workoutTypeRepository)
     }
     private lateinit var  binding: FragmentRvBinding
 

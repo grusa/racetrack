@@ -6,7 +6,7 @@ import earth.sochi.goyoga.database.WorkoutTypeRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
-class RacetrackApplication : Application() {
+class GoYogaApplication : Application() {
     val applicationScope = CoroutineScope(SupervisorJob())
     val database by lazy { WorkoutDatabase.getDatabase(this,applicationScope) }
     val workoutTypeRepository by lazy { WorkoutTypeRepository(database.workoutTypeDao(),

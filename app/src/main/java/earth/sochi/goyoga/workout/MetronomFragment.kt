@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import earth.sochi.goyoga.R
-import earth.sochi.goyoga.RacetrackApplication
+import earth.sochi.goyoga.GoYogaApplication
 import earth.sochi.goyoga.databinding.FragmentMetronomeBinding
 import earth.sochi.goyoga.viewmodels.TimeManagerViewModel
 
@@ -24,7 +24,7 @@ class MetronomeFragment : Fragment() {
     private val TAG="METRONOMFRAGMENT"
     private var startStop:Boolean=false
     private val timeManagerViewModel: TimeManagerViewModel by activityViewModels() {
-        TimeManagerViewModel.TimeManagerViewModelFactory((this.activity?.application as RacetrackApplication).workoutTypeRepository)
+        TimeManagerViewModel.TimeManagerViewModelFactory((this.activity?.application as GoYogaApplication).workoutTypeRepository)
     }
     private var timer :Int=0
     var running:kotlin.Boolean = false

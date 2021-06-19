@@ -9,7 +9,7 @@ android {
     compileSdkVersion 30
 
     defaultConfig {
-        applicationId "earth.sochi.racetrack"
+        applicationId "earth.sochi.goyoga"
         minSdkVersion 25
         targetSdkVersion 30
         versionCode 1

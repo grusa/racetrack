@@ -10,7 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import earth.sochi.goyoga.R
-import earth.sochi.goyoga.RacetrackApplication
+import earth.sochi.goyoga.GoYogaApplication
 import earth.sochi.goyoga.databinding.FragmentBreathBinding
 import earth.sochi.goyoga.viewmodels.BreathViewModel
 
@@ -32,7 +32,7 @@ class BreathFragment : Fragment() {
     private var startStop:Boolean = true
 
     private val breathViewModel: BreathViewModel by activityViewModels() {
-        BreathViewModel.BreathViewModelFactory((this.activity?.application as RacetrackApplication).workoutTypeRepository)
+        BreathViewModel.BreathViewModelFactory((this.activity?.application as GoYogaApplication).workoutTypeRepository)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

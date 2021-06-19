@@ -10,7 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import earth.sochi.goyoga.R
-import earth.sochi.goyoga.RacetrackApplication
+import earth.sochi.goyoga.GoYogaApplication
 import earth.sochi.goyoga.databinding.FragmentExerciseBinding
 import earth.sochi.goyoga.viewmodels.ExerciseViewModel
 
@@ -19,7 +19,7 @@ class ExerciseFragment : Fragment() {
     private var param2: String? = null
     private lateinit var  binding : FragmentExerciseBinding
     private val exerciseViewModel : ExerciseViewModel by activityViewModels() {
-        ExerciseViewModel.ExerciseViewModelFactory((this.activity?.application as RacetrackApplication).workoutTypeRepository)
+        ExerciseViewModel.ExerciseViewModelFactory((this.activity?.application as GoYogaApplication).workoutTypeRepository)
     }
 
     override fun onCreateView(
